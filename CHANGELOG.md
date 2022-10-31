@@ -1,5 +1,10 @@
 # Imager Changelog
 
+## 3.0.1 - 2022-10-31
+
+### Fixed
+- Fixed use of deprecated method deleteCachesByElementId when removing transformed assets
+
 ## 3.0.0 - 2022-05-16
 
 > {note} This version of Imager is forked to support Craft 4.
