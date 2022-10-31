@@ -444,7 +444,7 @@ class ImagerService extends Component
                     Craft::error('Could not clear directory "'.$targetModel->path.'" ('.$e->getMessage().')', __METHOD__);
                 }
 
-                Craft::$app->templateCaches->deleteCachesByElementId($asset->id);
+	            Craft::$app->elements->invalidateCachesForElement($asset);
 
                 if ($sourceModel->type !== 'local' && file_exists($sourceModel->getFilePath())) {
                     try {
