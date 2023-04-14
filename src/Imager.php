@@ -71,8 +71,8 @@ use aelvan\imager\optimizers\OptipngOptimizer;
 use aelvan\imager\optimizers\PngquantOptimizer;
 use aelvan\imager\optimizers\TinypngOptimizer;
 
-use aelvan\imager\externalstorage\AwsStorage;
-use aelvan\imager\externalstorage\GcsStorage;
+//use aelvan\imager\externalstorage\AwsStorage;
+//use aelvan\imager\externalstorage\GcsStorage;
 
 
 /**
@@ -181,7 +181,7 @@ class Imager extends Plugin
                     try {
                         $transform = $event->transform;
 
-                        // Transform is an AssetTransform 
+                        // Transform is an AssetTransform
                         if ($transform instanceof AssetTransform) {
                             $transform = ImagerHelpers::normalizeAssetTransformToObject($transform);
                         }
@@ -200,7 +200,7 @@ class Imager extends Plugin
 
                         if (is_array($transform)) {
                             $transformedImage = self::$plugin->imager->transformImage($event->asset, $transform);
-    
+
                             if ($transformedImage !== null) {
                                 $event->url = $transformedImage->getUrl();
                             }
@@ -299,8 +299,8 @@ class Imager extends Plugin
      */
     private function registerExternalStorages()
     {
-        ImagerService::registerExternalStorage('aws', AwsStorage::class);
-        ImagerService::registerExternalStorage('gcs', GcsStorage::class);
+        //ImagerService::registerExternalStorage('aws', AwsStorage::class);
+        //ImagerService::registerExternalStorage('gcs', GcsStorage::class);
     }
 
 }
