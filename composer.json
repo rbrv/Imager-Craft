@@ -32,9 +32,7 @@
         "ksubileau/color-thief-php": "^1.4.0",
         "ssnepenthe/color-utils": "~0.4",
         "imgix/imgix-php": "^2.1.0",
-        "kraken-io/kraken-php": "^1.2",
-        "aws/aws-sdk-php": "^3.0.0",
-        "google/cloud": "~0.20"
+        "kraken-io/kraken-php": "^1.2"
     },
     "autoload": {
         "psr-4": {
