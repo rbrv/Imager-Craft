@@ -1,5 +1,10 @@
 # Imager Changelog
 
+## 3.1.0 - 2023-04-25
+
+### Changed
+- Removed aws/aws-sdk-php and google/cloud composer packages
+
 ## 3.0.1 - 2022-10-31
 
 ### Fixed
