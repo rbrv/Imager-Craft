@@ -1,5 +1,10 @@
 # Imager Changelog
 
+## 2.5.0 - 2023-04-25s
+
+### Changed
+- Removed aws/aws-sdk-php and google/cloud composer packages
+
 ## 2.4.0 - 2020-02-11
 
 > {warning} This version of Imager is no longer actively maintained. [Imager X](https://plugins.craftcms.com/imager-x) is the successor of Imager 2.0, a commercial plugin with several new and awesome features.
