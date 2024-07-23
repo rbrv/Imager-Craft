@@ -2,7 +2,7 @@
     "name": "aelvan/imager",
     "description": "Image transforms gone wild",
     "type": "craft-plugin",
-    "version": "v3.1.0",
+    "version": "v4.0.0",
     "keywords": [
         "craft",
         "cms",
@@ -26,7 +26,7 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^4.0.0-RC10",
+        "craftcms/cms": "^5.0.0",
         "mikehaertl/php-shellcommand": "^1.2",
         "tinify/tinify": ">=1.1.1",
         "ksubileau/color-thief-php": "^1.4.0",
@@ -42,7 +42,7 @@
     "extra": {
         "name": "Imager",
         "handle": "imager",
-        "schemaVersion": "3.0.0",
+        "schemaVersion": "4.0.0",
         "hasCpSettings": false,
         "hasCpSection": false,
         "changelogUrl": "https://raw.githubusercontent.com/aelvan/Imager-Craft/craft3/CHANGELOG.md",

@@ -1,5 +1,10 @@
 # Imager Changelog
 
+## 4.0.0 - 2024-07-23
+
+### Added
+- Support for Craft 5
+
 ## 3.1.0 - 2023-04-25
 
 ### Changed
