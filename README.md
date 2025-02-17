@@ -1,4 +1,4 @@
-Imager for Craft 3.x
+Imager for Craft 5.x
 =====
 
 **Imager is dead - long live [Imager X](https://plugins.craftcms.com/imager-x)!**
