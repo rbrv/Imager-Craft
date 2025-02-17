@@ -1,5 +1,9 @@
 # Imager Changelog
 
+## 4.0.1 - 2025-02-17
+
+- Fix the bug when the local asset volume might have a subpath
+
 ## 4.0.0 - 2024-07-23
 
 ### Added

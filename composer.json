@@ -2,7 +2,7 @@
     "name": "aelvan/imager",
     "description": "Image transforms gone wild",
     "type": "craft-plugin",
-    "version": "v4.0.0",
+    "version": "v4.0.1",
     "keywords": [
         "craft",
         "cms",
@@ -42,7 +42,7 @@
     "extra": {
         "name": "Imager",
         "handle": "imager",
-        "schemaVersion": "4.0.0",
+        "schemaVersion": "4.0.1",
         "hasCpSettings": false,
         "hasCpSection": false,
         "changelogUrl": "https://raw.githubusercontent.com/aelvan/Imager-Craft/craft3/CHANGELOG.md",
