@@ -14,6 +14,7 @@ use Craft;
 
 use craft\base\LocalVolumeInterface;
 use craft\base\Volume;
+use craft\fs\Local;
 use craft\helpers\FileHelper;
 use craft\elements\Asset;
 use craft\helpers\Assets;
@@ -145,7 +146,7 @@ class LocalSourceImageModel
             if (!file_exists($this->getFilePath()) || (($config->cacheDurationRemoteFiles !== false) && ((FileHelper::lastModifiedTime($this->getFilePath()) + $config->cacheDurationRemoteFiles) < time()))) {
                 if ($this->asset && $this->type === 'volume') {
 	                try {
-		                $fs = $this->asset->getVolume()->getFs();
+		                $fs = $this->asset->getVolume();
 	                } catch (InvalidConfigException $invalidConfigException) {
 		                Craft::error($invalidConfigException->getMessage(), __METHOD__);
 		                throw new ImagerException($invalidConfigException->getMessage(), $invalidConfigException->getCode(), $invalidConfigException);
@@ -188,27 +189,30 @@ class LocalSourceImageModel
 
 
     /**
-				 * Get paths for a local asset
-				 *
-				 *
-				 * @throws ImagerException
-				 */
-				private function getPathsForLocalAsset(Asset $image)
+	 * Get paths for a local asset
+	 *
+	 *
+	 * @throws ImagerException
+	 */
+	private function getPathsForLocalAsset(Asset $image)
     {
         /** @var LocalVolumeInterface $volume */
         try {
             $volume = $image->getVolume();
+
+	        /** @var Local $fs */
+	        $fs = $image->getVolume()->getFs();
+
             $this->transformPath = ImagerHelpers::getTransformPathForAsset($image);
+	        $this->path = FileHelper::normalizePath($fs->getRootPath().'/'.$volume->getSubpath().'/'.$image->folderPath);
+	        $this->url = $image->getUrl();
+	        $this->filename = $image->getFilename();
+	        $this->basename = $image->getFilename(false);
+	        $this->extension = $image->getExtension();
         } catch (InvalidConfigException $e) {
             Craft::error($e->getMessage(), __METHOD__);
             throw new ImagerException($e->getMessage(), $e->getCode(), $e);
         }
-
-        $this->path = FileHelper::normalizePath($volume->getRootPath().'/'.$image->folderPath);
-        $this->url = $image->getUrl();
-        $this->filename = $image->getFilename();
-        $this->basename = $image->getFilename(false);
-        $this->extension = $image->getExtension();
     }
 
     /**
@@ -336,7 +340,7 @@ class LocalSourceImageModel
         if (\function_exists('curl_init')) {
             $ch = curl_init($imageUrl);
             $fp = fopen($this->getFilePath(), 'wb');
-            
+
             $defaultOptions = [
                 CURLOPT_FILE => $fp,
                 CURLOPT_HEADER => 0,

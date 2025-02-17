@@ -27,26 +27,27 @@ class ImgixHelpers
     {
         if (\is_string($image)) { // if $image is a string, just pass it to builder, we have to assume the user knows what he's doing (sry) :)
             return $image;
-        } 
-        
+        }
+
         if ($config->sourceIsWebProxy === true) {
             return $image->url ?? '';
-        } 
-            
+        }
+
         try {
             /** @var LocalVolumeInterface|Volume|Local $volume */
             $volume = $image->getVolume();
+	        $fs = $image->getVolume()->getFs();
         } catch (InvalidConfigException $e) {
             Craft::error($e->getMessage(), __METHOD__);
             throw new ImagerException($e->getMessage(), $e->getCode(), $e);
         }
 
-        if (($config->useCloudSourcePath === true) && isset($volume->subfolder) && \get_class($volume) !== 'craft\volumes\Local') {
-            $path = implode('/', [\Craft::parseEnv($volume->subfolder), $image->getPath()]);
+        if (($config->useCloudSourcePath === true) && property_exists($fs, 'subfolder') && \get_class($volume) !== 'craft\volumes\Local') {
+            $path = implode('/', [\Craft::parseEnv($fs->subfolder), \Craft::parseEnv($volume->getSubpath()), $image->getPath()]);
         } else {
             $path = $image->getPath();
         }
-        
+
         if ($config->addPath) {
             if (\is_string($config->addPath) && $config->addPath !== '') {
                 $path = implode('/', [$config->addPath, $path]);
@@ -56,7 +57,7 @@ class ImgixHelpers
                 }
             }
         }
-        
+
         $path = FileHelper::normalizePath($path);
 
         //always use forward slashes for imgix
@@ -64,5 +65,5 @@ class ImgixHelpers
 
         return $path;
     }
-    
+
 }
